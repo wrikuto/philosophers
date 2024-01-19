@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:03:14 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 16:12:40 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/19 16:51:29 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,35 +79,4 @@ void	*philo_life(void *arg)
 		ft_sleep(philo->tools->time_sleep);
 	}
 	return (NULL);
-}
-
-int	is_philo_dead(t_tools *tools)
-{
-	int		i;
-	int		meals;
-	long	diff_meal;
-
-	i = 0;
-	while (i < tools->num_philo)
-	{
-		pthread_mutex_lock(&tools->decrease);
-		diff_meal = get_ms() - read_m_t(&tools->philo[i]);
-		meals = tools->philo[i].c_meals;
-		pthread_mutex_unlock(&tools->decrease);
-		if (tools->time_dead < diff_meal || meals == 0)
-		{
-			pthread_mutex_lock(&tools->decrease);
-			change_end(tools);
-			if (tools->philo[i].c_meals != 0)
-			{
-				printf("%ld %d died\n", \
-						elapsed_time(tools->start_time), tools->philo[i].id);
-				if (tools->num_philo == 1 && tools->end == true)
-					pthread_mutex_unlock(&tools->forks[0]);
-			}
-			return (1);
-		}
-		i++;
-	}
-	return (0);
 }

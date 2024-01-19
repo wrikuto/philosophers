@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 18:56:55 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 15:58:09 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/19 16:51:53 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,6 @@ int	join_threads(t_tools *tools)
 	int	i;
 
 	i = 0;
-	// if (t_tools->num_philo == 1)
-		
 	while (i < tools->num_philo)
 	{
 		if (pthread_join(tools->philo[i].thread, NULL) != 0)

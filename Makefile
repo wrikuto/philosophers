@@ -4,14 +4,15 @@ SRCS	=	./src/main.c \
 			./src/prepare_party.c\
 			./src/ft_atoi.c \
 			./src/philo.c \
+			./src/dead_checker.c \
 			./src/mutex.c \
 			./src/time.c \
 			./src/utils.c
 
 CC		= cc
 INC	=	../inc/
-FLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g -I$(INC)
-# FLAGS	= -Wall -Wextra -Werror -I$(INC)
+# FLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g -I$(INC)
+FLAGS	= -Wall -Wextra -Werror -I$(INC)
 RM		= rm -rf
 
 OBJS_PATH = ./objs/
@@ -21,6 +22,7 @@ SRCS_FILES =	main.c \
 			prepare_party.c \
 			ft_atoi.c \
 			philo.c \
+			dead_checker.c \
 			mutex.c \
 			time.c \
 			utils.c
