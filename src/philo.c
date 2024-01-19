@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:03:14 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 14:41:09 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/19 16:12:40 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,11 @@ static void	eating(t_philo *philo)
 	pthread_mutex_lock(&philo->tools->forks[r_fork]);
 	print_philo_status("has taken a fork", philo->id, philo->tools);
 	pthread_mutex_lock(&philo->tools->forks[philo->id]);
+	if (philo->tools->num_philo == 1)
+	{
+		pthread_mutex_unlock(&philo->tools->forks[0]);
+		return ;
+	}
 	print_philo_status("has taken a fork", philo->id, philo->tools);
 	set_m_t(philo);
 	if (philo->c_meals != -1)
@@ -68,6 +73,8 @@ void	*philo_life(void *arg)
 	{
 		print_philo_status("is thinking", philo->id, philo->tools);
 		eating(philo);
+		if (philo->tools->num_philo == 1)
+			return (NULL);
 		print_philo_status("is sleeping", philo->id, philo->tools);
 		ft_sleep(philo->tools->time_sleep);
 	}
@@ -95,6 +102,8 @@ int	is_philo_dead(t_tools *tools)
 			{
 				printf("%ld %d died\n", \
 						elapsed_time(tools->start_time), tools->philo[i].id);
+				if (tools->num_philo == 1 && tools->end == true)
+					pthread_mutex_unlock(&tools->forks[0]);
 			}
 			return (1);
 		}
