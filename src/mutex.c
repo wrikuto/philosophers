@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 20:58:10 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 12:00:42 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/20 16:15:37 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,12 @@ int	check_end(t_tools *tools)
 	return (status);
 }
 
-void	change_end(t_tools *tools)
+int	change_end(t_tools *tools)
 {
 	pthread_mutex_lock(&tools->lock);
 	tools->end = true;
 	pthread_mutex_unlock(&tools->lock);
+	return (1);
 }
 
 void	set_m_t(t_philo *philo)

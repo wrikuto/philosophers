@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:49:17 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 16:37:51 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/20 16:45:09 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ int	main(int argc, char **argv)
 	i = 0;
 	if (prepare_party(argc, argv, &tools) == -1)
 		return (-1);
-	while (is_philo_dead(&tools) == 0)
+	while (is_finish_or_dead(&tools) == 0)
 		usleep(1000);
-	pthread_mutex_unlock(&tools.decrease);
+	if (tools.end == true)
+		pthread_mutex_unlock(&tools.decrease);
 	join_threads(&tools);
 	free_philo_and_forks(&tools);
 	pthread_mutex_destroy(&tools.lock);

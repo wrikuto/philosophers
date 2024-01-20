@@ -11,8 +11,8 @@ SRCS	=	./src/main.c \
 
 CC		= cc
 INC	=	../inc/
-# FLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g -I$(INC)
-FLAGS	= -Wall -Wextra -Werror -I$(INC)
+FLAGS	= -Wall -Wextra -Werror -fsanitize=thread -g -I$(INC)
+# FLAGS	= -Wall -Wextra -Werror -I$(INC)
 RM		= rm -rf
 
 OBJS_PATH = ./objs/
@@ -48,17 +48,3 @@ re:			fclean $(NAME)
 
 .PHONY:		all clean fclean re
 
-# ---
-
-# OBJS = $(addprefix $(OBJS_PATH), $(SRCS_FILES:.c=.o))
-
-# $(OBJS_PATH):
-# 	mkdir -p $@
-
-# all:		$(NAME)
- 
-# $(NAME): $(OBJS_PATH) $(OBJS)
-# 	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-
-# $(OBJS_PATH)%.o: $(SRCS_PATH)%.c
-# 	$(CC) $(FLAGS) -c $< -o $@

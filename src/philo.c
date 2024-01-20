@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:03:14 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 16:51:29 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/20 17:08:17 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,16 +43,13 @@ static void	eating(t_philo *philo)
 	print_philo_status("has taken a fork", philo->id, philo->tools);
 	pthread_mutex_lock(&philo->tools->forks[philo->id]);
 	if (philo->tools->num_philo == 1)
-	{
-		pthread_mutex_unlock(&philo->tools->forks[0]);
 		return ;
-	}
 	print_philo_status("has taken a fork", philo->id, philo->tools);
 	set_m_t(philo);
 	if (philo->c_meals != -1)
 	{
 		pthread_mutex_lock(&philo->tools->decrease);
-		philo->c_meals--;
+		philo->c_meals++;
 		pthread_mutex_unlock(&philo->tools->decrease);
 	}
 	print_philo_status("is eating", philo->id, philo->tools);
@@ -69,7 +66,7 @@ void	*philo_life(void *arg)
 	philo = arg;
 	if (philo->id % 2 == 0)
 		usleep(philo->tools->time_eat * 1000);
-	while ((check_end(philo->tools) != 1) && (philo->c_meals != 0))
+	while ((check_end(philo->tools) != 1))
 	{
 		print_philo_status("is thinking", philo->id, philo->tools);
 		eating(philo);

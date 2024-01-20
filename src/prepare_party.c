@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/18 14:50:47 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 12:08:19 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/20 15:44:04 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static int	generate_philo(t_tools *tools, int i)
 	tools->philo[i].id = i;
 	tools->philo[i].time_last_meal = get_ms();
 	tools->philo[i].tools = tools;
-	tools->philo[i].c_meals = tools->eat_up;
+	tools->philo[i].c_meals = 0;
 	if (pthread_create \
 	(&tools->philo[i].thread, NULL, &philo_life, &tools->philo[i]) == 1)
 		return (1);

@@ -6,7 +6,7 @@
 /*   By: wrikuto <wrikuto@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/27 21:49:15 by wrikuto           #+#    #+#             */
-/*   Updated: 2024/01/19 16:50:20 by wrikuto          ###   ########.fr       */
+/*   Updated: 2024/01/20 17:06:45 by wrikuto          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ void	free_philo_and_forks(t_tools *tools);
 void	print_philo_status(char *str, int id, t_tools *tools);
 
 // dead_checker.c
-int		is_philo_dead(t_tools *tools);
+int		is_finish_or_dead(t_tools *tools);
 
 // mutex.c
 int		check_end(t_tools *tools);
-void	change_end(t_tools *tools);
+int		change_end(t_tools *tools);
 void	set_m_t(t_philo *philo);
 long	read_m_t(t_philo *philo);
 
